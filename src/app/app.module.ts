@@ -4,15 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { LeftMenuComponent } from './left-menu/left-menu.component';
 import { HomeComponent } from './home/home.component';
+import { CourseComponent } from './home/courses/course/course.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoursesComponent } from './home/courses/courses.component';
+import { TeachersComponent } from './home/teachers/teachers.component';
+import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeftMenuComponent,
-    HomeComponent
+    HomeComponent,
+    CoursesComponent,
+    CourseComponent,
+    TeachersComponent,
+    TeacherComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
