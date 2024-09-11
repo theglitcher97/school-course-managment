@@ -1,0 +1,14 @@
+.app-home {
+    height: 100vh;
+}
+
+.left-menu {
+    height: 100vh;
+    background-color: #ccc;
+}
+
+.home {
+    border-right: #ccc;
+    min-height: 100vh;
+    border-right: 2px solid #ccc;
+}
