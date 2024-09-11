@@ -2,13 +2,17 @@
     height: 100vh;
 }
 
+.app-row {
+    height: inherit;
+}
+
 .left-menu {
-    height: 100vh;
+    height: 5vh;
     background-color: #ccc;
 }
 
 .home {
     border-right: #ccc;
-    min-height: 100vh;
-    border-right: 2px solid #ccc;
+    height: 90vh;
+    border: 2px solid #ccc;
 }
