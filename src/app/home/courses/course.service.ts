@@ -3,6 +3,7 @@ import { CourseModel } from "./course.model";
 
 @Injectable({providedIn: "root"})
 export class CourseService {
+    
     private courses: CourseModel[] = [
         new CourseModel(1, "Lindsay Cole", 'Computer Science', 30, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmueble.com%2Fmedio%2F2023%2F05%2F23%2Fgato-somali_714fa25d_230523111547_900x900.jpg&f=1&nofb=1&ipt=a86c7f9b1cbf2b32aea90741017dc83416e110d36a021f4fc0fe653ac9516b56&ipo=images"),
         new CourseModel(2, "Lindsay Cole", 'Physics', 30, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmueble.com%2Fmedio%2F2023%2F05%2F23%2Fgato-somali_714fa25d_230523111547_900x900.jpg&f=1&nofb=1&ipt=a86c7f9b1cbf2b32aea90741017dc83416e110d36a021f4fc0fe653ac9516b56&ipo=images"),
@@ -15,5 +16,9 @@ export class CourseService {
     public getCourses(): CourseModel[] {
         return this.courses.slice();
     }
+
+    getCourseById(courseId: number): CourseModel | undefined {
+        return this.courses.find(c => c.id === courseId);
+      }
 }
 
