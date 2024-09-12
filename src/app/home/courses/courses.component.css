@@ -1,4 +1,17 @@
 .courses-content {
     height: inherit;
     border-right: 2px #ccc solid;
+    overflow: auto;
+}
+
+.course-card {
+    height: 380px;
+    /* width: 240px; */
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+    transition: all ease-out 0.3s;
 }

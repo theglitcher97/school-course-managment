@@ -1,4 +1,24 @@
-<div class="row" style="height: 100%;">
-    <div class="col-md-8 courses-content">Courses</div>
-    <div class="col-md-3 course-content">Course</div>
+<div class="row" style="height: 100%">
+  <div class="col-md-8 courses-content">
+    <header>Header</header>
+    <main>
+      <div
+        class="col-sm-6 col-md-4 course-card"
+        *ngFor="let course of courses"
+      >
+        <div class="thumbnail" >
+          <img [src]="course.img" style="height: 200px;" />
+          <div class="caption">
+            <h3>{{ course.name }}</h3>
+            <p>Teacher: {{ course.teacher }}</p>
+            <p>
+              <a class="btn btn-default" role="button">Edit</a>
+              <a class="btn btn-primary" role="button">See</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="col-md-3 course-content">Course</div>
 </div>
