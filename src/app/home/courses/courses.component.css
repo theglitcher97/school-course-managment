@@ -7,6 +7,9 @@
 .course-card {
     height: 380px;
     margin-bottom: 15px;
+}
+
+.course-card img:hover {
     cursor: pointer;
 }
 
