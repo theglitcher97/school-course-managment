@@ -24,12 +24,5 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  onCourseClick(id: number) {
-    this.router.navigate(['.', id], { relativeTo: this.activeRouted });
-  }
-
-  onDeleteCourse(id: number) {
-    this.courseService.deleteCourse(id);
-    this.courses = this.courseService.getCourses();
-  }
+  
 }

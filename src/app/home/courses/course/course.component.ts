@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { CourseModel } from '../course.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -9,16 +9,22 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./course.component.css'],
 })
 export class CourseComponent implements OnInit {
-  public course!: CourseModel | undefined;
+  @Input() course!: CourseModel | undefined;
 
   constructor(
     private courseService: CourseService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe((params: Params) => {
-      this.course = this.courseService.getCourseById(+params['id']);
-    });
+  }
+
+  onCourseClick(id: number) {
+    this.router.navigate(['.', id], { relativeTo: this.activeRoute });
+  }
+
+  onDeleteCourse(id: number) {
+    this.courseService.deleteCourse(id);
   }
 }

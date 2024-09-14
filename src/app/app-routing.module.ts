@@ -19,6 +19,10 @@ const appRoutes: Route[] = [
         path: ':id',
         component: CourseComponent,
       },
+      {
+        path: ':id/edit',
+        component: AddCourseComponent,
+      },
     ],
   },
   {

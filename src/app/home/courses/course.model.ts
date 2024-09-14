@@ -10,4 +10,5 @@ export class CourseModel {
   ) {
     this.id = CourseModel.COURSE_COUNTER++
   }
+
 }
