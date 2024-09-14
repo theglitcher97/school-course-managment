@@ -19,10 +19,13 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.courses = this.courseService.getCourses();
+    this.courseService.coursesUpdatedEvent.subscribe(() => {
+      this.courses = this.courseService.getCourses();
+    });
   }
 
   onCourseClick(id: number) {
-    this.router.navigate(['.', id], {relativeTo: this.activeRouted})
+    this.router.navigate(['.', id], { relativeTo: this.activeRouted });
   }
 
   onDeleteCourse(id: number) {

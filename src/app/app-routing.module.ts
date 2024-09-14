@@ -4,12 +4,17 @@ import { CoursesComponent } from './home/courses/courses.component';
 import { CourseComponent } from './home/courses/course/course.component';
 import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
+import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 
 const appRoutes: Route[] = [
   {
     path: 'courses',
     component: CoursesComponent,
     children: [
+      {
+        path: 'add-course',
+        component: AddCourseComponent,
+      },
       {
         path: ':id',
         component: CourseComponent,

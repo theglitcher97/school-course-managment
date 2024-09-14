@@ -1,0 +1,54 @@
+<form #form>
+  <div class="form-group">
+    <label for="courseName">Course Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="courseName"
+      placeholder="Course Name"
+      #courseName
+      name="courseName"
+    />
+  </div>
+  <div class="form-group">
+    <label for="teacherName">Teacher Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="teacherName"
+      placeholder="Teacher Name"
+      required
+      #teacherName
+      name="teacherName"
+
+    />
+  </div>
+  <div class="form-group">
+    <label for="totalStudents">Total Students</label>
+    <input
+      type="number"
+      min="1"
+      max="40"
+      class="form-control"
+      id="totalStudents"
+      placeholder="total of students"
+      required
+      #totalStudents
+      name="totalStudents"
+
+    />
+  </div>
+  <div class="form-group">
+    <label for="courseImage">Course Image</label>
+    <input
+      type="text"
+      class="form-control"
+      id="courseImage"
+      placeholder="url"
+      required
+      #courseImage
+      name="courseImage"
+    />
+  </div>
+  <button type="button" (click)="onSaveCourse()" class="btn btn-default">Submit</button>
+</form>

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CoursesComponent } from './home/courses/courses.component';
 import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
+import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TeacherComponent } from './home/teachers/teacher/teacher.component';
     CoursesComponent,
     CourseComponent,
     TeachersComponent,
-    TeacherComponent
+    TeacherComponent,
+    AddCourseComponent
   ],
   imports: [
     BrowserModule,

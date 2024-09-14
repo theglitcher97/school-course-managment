@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { CourseModel } from "./course.model";
 
 @Injectable({providedIn: "root"})
 export class CourseService {
-    
-    
+    public coursesUpdatedEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+
     private courses: CourseModel[] = [
         new CourseModel("Lindsay Cole", 'Computer Science', 30, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmueble.com%2Fmedio%2F2023%2F05%2F23%2Fgato-somali_714fa25d_230523111547_900x900.jpg&f=1&nofb=1&ipt=a86c7f9b1cbf2b32aea90741017dc83416e110d36a021f4fc0fe653ac9516b56&ipo=images"),
         new CourseModel("Lindsay Cole", 'Physics', 30, "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.elmueble.com%2Fmedio%2F2023%2F05%2F23%2Fgato-somali_714fa25d_230523111547_900x900.jpg&f=1&nofb=1&ipt=a86c7f9b1cbf2b32aea90741017dc83416e110d36a021f4fc0fe653ac9516b56&ipo=images"),
@@ -24,6 +24,11 @@ export class CourseService {
 
     deleteCourse(id: number) {
         this.courses = this.courses.filter(c => c.id !== id);   
+    }
+
+    addCourse(course: CourseModel) {
+       this.courses.unshift(course);
+       this.coursesUpdatedEvent.next(true);
     }
 }
 
