@@ -10,6 +10,7 @@ import { CoursesComponent } from './home/courses/courses.component';
 import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
+import { TeacherService } from './home/teachers/teacher.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { AddCourseComponent } from './home/courses/add-course/add-course.compone
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [TeacherService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
