@@ -11,17 +11,10 @@
     />
   </div>
   <div class="form-group">
-    <label for="teacherName">Teacher Name</label>
-    <input
-      type="text"
-      class="form-control"
-      id="teacherName"
-      placeholder="Teacher Name"
-      required
-      #teacherName
-      name="teacherName"
-
-    />
+    <label for="teacher">Choose a Teacher:</label><br>
+    <select name="teacher" id="teacher" #teacherId>
+        <option [value]="teacher.id" *ngFor="let teacher of teachers">{{teacher.firstName}} {{teacher.lastName}}</option>
+    </select> 
   </div>
   <div class="form-group">
     <label for="totalStudents">Total Students</label>

@@ -2,13 +2,17 @@ export class CourseModel {
   private static COURSE_COUNTER = 0;
 
   public id!: number;
+  public teacher!: {
+    name: string;
+    code: string;
+  };
+
   constructor(
-    public teacher: string,
+    public teacherId: number,
     public name: string,
     public totalStudents: number,
-    public img: string,
+    public img: string
   ) {
-    this.id = CourseModel.COURSE_COUNTER++
+    this.id = CourseModel.COURSE_COUNTER++;
   }
-
 }

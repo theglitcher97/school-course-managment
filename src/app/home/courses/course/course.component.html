@@ -3,7 +3,7 @@
       <img [src]="course.img" style="height: 200px" />
       <div class="caption">
         <h3>{{ course.name }}</h3>
-        <p>Teacher: {{ course.teacher }}</p>
+        <p>Teacher: {{ course.teacher.name }}</p>
         <p>
           <a class="btn btn-danger" (click)="onDeleteCourse(course.id)" style="margin-right: 10px;" role="button">Delete</a>
           <a class="btn btn-primary" [routerLink]="['.', course.id, 'edit']" role="button">Edit</a>

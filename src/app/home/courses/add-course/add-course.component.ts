@@ -8,6 +8,8 @@ import {
 import { CourseModel } from '../course.model';
 import { CourseService } from '../course.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { TeacherService } from '../../teachers/teacher.service';
+import { TeacherModel } from '../../teachers/teacher.model';
 
 @Component({
   selector: 'app-add-course',
@@ -16,20 +18,23 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class AddCourseComponent implements OnInit, AfterViewInit {
   @ViewChild('courseName') courseNameInput!: ElementRef;
-  @ViewChild('teacherName') teacherNameInput!: ElementRef;
+  @ViewChild('teacherId') teacherIdInput!: ElementRef;
   @ViewChild('totalStudents') totalStudentsInput!: ElementRef;
   @ViewChild('courseImage') courseImageInput!: ElementRef;
 
   private course!: CourseModel;
   private isEditing = false;
+  public teachers: TeacherModel[] = [];
 
   constructor(
     private courseService: CourseService,
+    private teacherService: TeacherService,
     private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     console.log('Init');
+    this.teachers = this.teacherService.getTeachers();
   }
 
   ngAfterViewInit(): void {
@@ -41,7 +46,7 @@ export class AddCourseComponent implements OnInit, AfterViewInit {
 
         this.course = course;
         this.courseNameInput.nativeElement.value = this.course.name;
-        this.teacherNameInput.nativeElement.value = this.course.teacher;
+        this.teacherIdInput.nativeElement.value = this.course.teacher;
         this.totalStudentsInput.nativeElement.value = this.course.totalStudents;
         this.courseImageInput.nativeElement.value = this.course.img;
         this.isEditing = true;
@@ -50,21 +55,23 @@ export class AddCourseComponent implements OnInit, AfterViewInit {
   }
 
   onSaveCourse() {
+    console.log(this.teacherIdInput);
+    
     const courseName = this.courseNameInput.nativeElement.value;
-    const teacherName = this.teacherNameInput.nativeElement.value;
+    const teacherId = +this.teacherIdInput.nativeElement.value;
     const totalStudents = this.totalStudentsInput.nativeElement.value;
     const courseImage = this.courseImageInput.nativeElement.value;
 
     if (!this.isEditing) {
       this.course = new CourseModel(
-        teacherName,
+        teacherId,
         courseName,
         totalStudents,
         courseImage
       );
     }else{
       this.course.name = courseName;
-      this.course.teacher = teacherName;
+      this.course.teacherId = teacherId;
       this.course.totalStudents = totalStudents;
       this.course.img = courseImage;
     }
