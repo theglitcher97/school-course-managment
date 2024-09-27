@@ -11,6 +11,8 @@ import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 import { TeacherService } from './home/teachers/teacher.service';
+import { FormsModule } from '@angular/forms';
+import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
 
 @NgModule({
   declarations: [
@@ -21,11 +23,13 @@ import { TeacherService } from './home/teachers/teacher.service';
     CourseComponent,
     TeachersComponent,
     TeacherComponent,
-    AddCourseComponent
+    AddCourseComponent,
+    AddTeacherComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [TeacherService],
   bootstrap: [AppComponent]

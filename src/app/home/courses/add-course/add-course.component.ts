@@ -46,7 +46,7 @@ export class AddCourseComponent implements OnInit, AfterViewInit {
 
         this.course = course;
         this.courseNameInput.nativeElement.value = this.course.name;
-        this.teacherIdInput.nativeElement.value = this.course.teacher;
+        this.teacherIdInput.nativeElement.value = this.course.teacherId;
         this.totalStudentsInput.nativeElement.value = this.course.totalStudents;
         this.courseImageInput.nativeElement.value = this.course.img;
         this.isEditing = true;

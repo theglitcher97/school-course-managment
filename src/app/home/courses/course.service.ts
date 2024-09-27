@@ -11,7 +11,9 @@ export class CourseService implements OnInit {
 
   constructor(private teacherService: TeacherService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   public getCourses(): CourseModel[] {
     return this.courses.slice();

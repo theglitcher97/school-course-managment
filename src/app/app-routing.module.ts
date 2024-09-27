@@ -5,6 +5,7 @@ import { CourseComponent } from './home/courses/course/course.component';
 import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
+import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
 
 const appRoutes: Route[] = [
   {
@@ -30,8 +31,16 @@ const appRoutes: Route[] = [
     component: TeachersComponent,
     children: [
       {
+        path: 'add-teacher',
+        component: AddTeacherComponent,
+      },
+      {
         path: ':id',
         component: TeacherComponent,
+      },
+      {
+        path: ':id/edit',
+        component: AddTeacherComponent,
       },
     ],
   },

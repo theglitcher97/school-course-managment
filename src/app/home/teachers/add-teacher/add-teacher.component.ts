@@ -1,0 +1,52 @@
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { TeacherService } from '../teacher.service';
+import { TeacherModel } from '../teacher.model';
+import { ActivatedRoute, Params } from '@angular/router';
+
+@Component({
+  selector: 'app-add-teacher',
+  templateUrl: './add-teacher.component.html',
+  styleUrls: ['./add-teacher.component.css']
+})
+export class AddTeacherComponent implements OnInit, AfterViewInit {
+  public firstName!: string;
+  public lastName!: string;
+  public teacherCode!: string;
+  public img!: string;
+  private teacher!: TeacherModel | undefined;
+  private isEditing = false;
+
+  constructor(private teacherService: TeacherService, private activeRoute: ActivatedRoute){}
+
+  ngOnInit(): void {
+     
+  }
+
+  ngAfterViewInit(): void {
+      this.activeRoute.params.subscribe((param: Params) => {
+        const id = +param['id'];
+        if (id === undefined) return;
+
+        this.teacher = this.teacherService.getTeacherById(id);
+        if (this.teacher === undefined) return;
+
+        this.firstName = this.teacher.firstName;
+        this.lastName = this.teacher.lastName;
+        this.img = this.teacher.img;
+        this.isEditing = true;
+      })
+  }
+
+  onSaveTeacher(){
+    if (this.teacher !== undefined) {
+      this.teacher.firstName = this.firstName;
+      this.teacher.lastName = this.lastName;
+      this.teacher.img = this.img;
+      this.teacherService.update(this.teacher.id, this.teacher);
+    }else {
+      this.teacher = new TeacherModel(this.firstName, this.lastName, this.img);
+      this.teacherService.save(this.teacher);
+    }
+
+  }
+}

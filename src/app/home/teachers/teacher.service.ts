@@ -1,9 +1,10 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { TeacherModel } from "./teacher.model";
 
 @Injectable()
 export class TeacherService {
-    
+    public teacherUpdatedEvent: EventEmitter<TeacherModel> = new EventEmitter<TeacherModel>();
+   
     private teachers: TeacherModel[] = [
         new TeacherModel("Fernando", "Orozco", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.bg6ge_Og9wjOvsxM2dkkWgHaGz%26pid%3DApi&f=1&ipt=6f9a19311eeab46c9afde97b4b7a0b8da5a77b39c3627229a02c97b557480983&ipo=images"),
         new TeacherModel("Valentina", "Solis", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.Jdx85dYNgspN9EOjyCihfwHaE8%26pid%3DApi&f=1&ipt=75e2f0f26d6ac40df211305e534c35cdcb4268d4e6786cd93bbbcbcf5ed0a285&ipo=images"),
@@ -20,4 +21,16 @@ export class TeacherService {
     getTeacherById(teacherId: number) {
         return this.teachers.slice().find((t: TeacherModel) => t.id === teacherId);
     }
+
+    save(teacher: TeacherModel) {
+      this.teachers.unshift(teacher);
+    }
+
+    update(id: number, teacher: TeacherModel) {
+      const oldTeacherIndex = this.teachers.findIndex(t => t.id === id);
+      if (oldTeacherIndex === -1) return;
+      this.teachers.splice(oldTeacherIndex, 1, teacher);
+      this.teacherUpdatedEvent.next(teacher);
+    }
+    
 }
