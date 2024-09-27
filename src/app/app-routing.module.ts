@@ -6,6 +6,7 @@ import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
+import { AddTeacherCanDeactivate } from './home/teachers/add-teacher.can-deactivate';
 
 const appRoutes: Route[] = [
   {
@@ -33,6 +34,7 @@ const appRoutes: Route[] = [
       {
         path: 'add-teacher',
         component: AddTeacherComponent,
+        canDeactivate: [AddTeacherCanDeactivate]
       },
       {
         path: ':id',
@@ -41,6 +43,7 @@ const appRoutes: Route[] = [
       {
         path: ':id/edit',
         component: AddTeacherComponent,
+        canDeactivate: [AddTeacherCanDeactivate]
       },
     ],
   },

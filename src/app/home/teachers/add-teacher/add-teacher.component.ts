@@ -2,16 +2,19 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { TeacherService } from '../teacher.service';
 import { TeacherModel } from '../teacher.model';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { CanComponentDeactivate } from '../add-teacher.can-deactivate';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-teacher',
   templateUrl: './add-teacher.component.html',
   styleUrls: ['./add-teacher.component.css'],
 })
-export class AddTeacherComponent implements OnInit, AfterViewInit {
+export class AddTeacherComponent
+  implements OnInit, AfterViewInit, CanComponentDeactivate
+{
   public firstName!: string;
   public lastName!: string;
-  public teacherCode!: string;
   public img!: string;
   private teacher!: TeacherModel | undefined;
 
@@ -47,6 +50,12 @@ export class AddTeacherComponent implements OnInit, AfterViewInit {
       this.teacher = new TeacherModel(this.firstName, this.lastName, this.img);
       this.teacherService.save(this.teacher);
     }
-    this.router.navigate(['..'], {relativeTo: this.activeRoute})
+    this.router.navigate(['..'], { relativeTo: this.activeRoute });
+  }
+
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.firstName || this.lastName || this.img)
+      return window.confirm("Your progress will be lost")
+    return false;
   }
 }

@@ -13,6 +13,7 @@ import { AddCourseComponent } from './home/courses/add-course/add-course.compone
 import { TeacherService } from './home/teachers/teacher.service';
 import { FormsModule } from '@angular/forms';
 import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
+import { AddTeacherCanDeactivate } from './home/teachers/add-teacher.can-deactivate';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.com
     AppRoutingModule,
     FormsModule
   ],
-  providers: [TeacherService],
+  providers: [TeacherService, AddTeacherCanDeactivate],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
