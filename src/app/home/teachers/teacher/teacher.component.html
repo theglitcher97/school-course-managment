@@ -3,6 +3,7 @@
       <img [src]="teacher.img" style="height: 200px" />
       <div class="caption">
         <h3>{{ teacher.firstName }} {{teacher.lastName}}</h3>
+        <p>Code: {{teacher.teacherCode}}</p>
         <p>
           <a class="btn btn-danger" (click)="onDeleteTeacher()"  style="margin-right: 10px;" role="button">Delete</a>
           <a class="btn btn-primary" [routerLink]="['.', teacher.id, 'edit']" role="button">Edit</a>

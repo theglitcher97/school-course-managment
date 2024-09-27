@@ -1,4 +1,4 @@
-<form #form>
+<form #form *ngIf="teachers.length; else noTeachers">
   <div class="form-group">
     <label for="courseName">Course Name</label>
     <input
@@ -45,3 +45,8 @@
   </div>
   <button type="button" (click)="onSaveCourse()" class="btn btn-default">Submit</button>
 </form>
+<ng-template #noTeachers>
+  <div>
+    <h1>Please add some teachers first</h1>
+  </div>
+</ng-template>
