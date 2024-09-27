@@ -5,6 +5,7 @@ import { TeacherModel } from '../teachers/teacher.model';
 
 @Injectable({ providedIn: 'root' })
 export class CourseService implements OnInit {
+  
   public coursesUpdatedEvent: EventEmitter<boolean> =
     new EventEmitter<boolean>();
   private courses: CourseModel[] = [];
@@ -54,5 +55,9 @@ export class CourseService implements OnInit {
     this.courses.splice(index, 1, course);
     this.coursesUpdatedEvent.next(true);
     return true;
+  }
+
+  hasAnyCourseAssigned(teacherId: number) {
+    return this.courses.some(c => c.teacherId === teacherId);
   }
 }

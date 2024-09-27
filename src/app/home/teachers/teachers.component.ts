@@ -14,5 +14,8 @@ export class TeachersComponent implements OnInit {
 
   ngOnInit(): void {
       this.teachers = this.teacherService.getTeachers();
+      this.teacherService.teachersUpdatedEvent.subscribe(teachers => {
+        this.teachers = teachers;
+      })
   }
 }
