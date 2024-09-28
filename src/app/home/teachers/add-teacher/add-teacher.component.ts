@@ -42,6 +42,9 @@ export class AddTeacherComponent
   }
 
   onSaveTeacher() {
+    if (!this.firstName.trim() || !this.lastName.trim() || !this.img)
+      return;
+
     if (this.teacher !== undefined) {
       this.teacher.firstName = this.firstName;
       this.teacher.lastName = this.lastName;
