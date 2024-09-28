@@ -17,6 +17,7 @@ export class AddTeacherComponent
   public lastName!: string;
   public img!: string;
   private teacher!: TeacherModel | undefined;
+  private canLeave = false;
 
   constructor(
     private teacherService: TeacherService,
@@ -50,10 +51,13 @@ export class AddTeacherComponent
       this.teacher = new TeacherModel(this.firstName, this.lastName, this.img);
       this.teacherService.save(this.teacher);
     }
+
+    this.canLeave = true;
     this.router.navigate(['..'], { relativeTo: this.activeRoute });
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
+    if (this.canLeave) return true;
     if (this.firstName || this.lastName || this.img)
       return window.confirm("Your progress will be lost")
     return false;

@@ -6,7 +6,7 @@ import { TeachersComponent } from './home/teachers/teachers.component';
 import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
-import { AddTeacherCanDeactivate } from './home/teachers/add-teacher.can-deactivate';
+import { CanDeactivateComponent } from './home/teachers/add-teacher.can-deactivate';
 
 const appRoutes: Route[] = [
   {
@@ -16,6 +16,7 @@ const appRoutes: Route[] = [
       {
         path: 'add-course',
         component: AddCourseComponent,
+        canDeactivate: [CanDeactivateComponent],
       },
       {
         path: ':id',
@@ -24,6 +25,7 @@ const appRoutes: Route[] = [
       {
         path: ':id/edit',
         component: AddCourseComponent,
+        canDeactivate: [CanDeactivateComponent],
       },
     ],
   },
@@ -34,7 +36,7 @@ const appRoutes: Route[] = [
       {
         path: 'add-teacher',
         component: AddTeacherComponent,
-        canDeactivate: [AddTeacherCanDeactivate]
+        canDeactivate: [CanDeactivateComponent],
       },
       {
         path: ':id',
@@ -43,17 +45,19 @@ const appRoutes: Route[] = [
       {
         path: ':id/edit',
         component: AddTeacherComponent,
-        canDeactivate: [AddTeacherCanDeactivate]
+        canDeactivate: [CanDeactivateComponent],
       },
     ],
   },
   {
-    path: "**", redirectTo: "/courses", pathMatch: "full"
-  }
+    path: '**',
+    redirectTo: '/courses',
+    pathMatch: 'full',
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(appRoutes)],
-    exports: [RouterModule]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {}

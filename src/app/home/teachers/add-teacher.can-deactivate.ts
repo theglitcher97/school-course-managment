@@ -9,7 +9,7 @@ export interface CanComponentDeactivate {
   canDeactivate: () => Observable<boolean> | Promise<boolean> | boolean;
 }
 
-export class AddTeacherCanDeactivate
+export class CanDeactivateComponent
   implements CanDeactivate<CanComponentDeactivate>
 {
   canDeactivate(
