@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CourseService } from '../course.service';
 import { CourseModel } from '../course.model';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
+import { StudentModel } from '../../students/student.model';
 
 @Component({
   selector: 'app-course',
@@ -10,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class CourseComponent implements OnInit {
   @Input() course!: CourseModel | undefined;
+  public students: StudentModel[] = [];
 
   constructor(
     private courseService: CourseService,
@@ -18,6 +20,7 @@ export class CourseComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
   }
 
   onCourseClick(id: number) {

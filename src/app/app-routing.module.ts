@@ -10,6 +10,8 @@ import { CanDeactivateComponent } from './home/teachers/add-teacher.can-deactiva
 import { StudentsComponent } from './home/students/students.component';
 import { AddStudentComponent } from './home/students/add-student/add-student.component';
 import { StudentComponent } from './home/students/student/student.component';
+import { CourseStudentsResolver } from './home/courses/course-students.resolver';
+import { CourseDetailsComponent } from './home/courses/course-details/course-details.component';
 
 const appRoutes: Route[] = [
   {
@@ -23,7 +25,8 @@ const appRoutes: Route[] = [
       },
       {
         path: ':id',
-        component: CourseComponent,
+        component: CourseDetailsComponent,
+        resolve: {courseStudents: CourseStudentsResolver}
       },
       {
         path: ':id/edit',

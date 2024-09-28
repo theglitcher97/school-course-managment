@@ -1,6 +1,6 @@
 <div class="course-card" *ngIf="course !== undefined">
     <div class="thumbnail">
-      <img [src]="course.img" style="height: 200px" />
+      <img [src]="course.img" style="height: 200px" [routerLink]="['./', course.id]" />
       <div class="caption">
         <h3>{{ course.name }}</h3>
         <p>Teacher: {{ course.teacher.name }}</p>

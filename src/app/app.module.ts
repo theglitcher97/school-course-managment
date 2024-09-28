@@ -18,6 +18,9 @@ import { StudentsComponent } from './home/students/students.component';
 import { StudentComponent } from './home/students/student/student.component';
 import { AddStudentComponent } from './home/students/add-student/add-student.component';
 import { StudentService } from './home/students/student.service';
+import { CourseDetailsComponent } from './home/courses/course-details/course-details.component';
+import { CourseStudentsResolver } from './home/courses/course-students.resolver';
+import { CourseStudentsService } from './home/course-students.service';
 
 @NgModule({
   declarations: [
@@ -32,14 +35,17 @@ import { StudentService } from './home/students/student.service';
     AddTeacherComponent,
     StudentsComponent,
     StudentComponent,
-    AddStudentComponent
+    AddStudentComponent,
+    CourseDetailsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
+  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  providers: [
+    TeacherService,
+    CanDeactivateComponent,
+    StudentService,
+    CourseStudentsService,
+    CourseStudentsResolver,
   ],
-  providers: [TeacherService, CanDeactivateComponent, StudentService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
