@@ -1,0 +1,12 @@
+<div class="course-card" *ngIf="student !== undefined">
+    <div class="thumbnail">
+      <img [src]="student.img" style="height: 200px" />
+      <div class="caption">
+        <h3>{{ student.firstName }} {{student.lastName}}</h3>
+        <p>
+          <a class="btn btn-danger" (click)="onDeleteStudent()"  style="margin-right: 10px;" role="button">Delete</a>
+          <a class="btn btn-primary" [routerLink]="['.', student.id, 'edit']" role="button">Edit</a>
+        </p>
+      </div>
+    </div>
+  </div>

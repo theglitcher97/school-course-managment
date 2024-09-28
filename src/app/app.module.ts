@@ -14,6 +14,10 @@ import { TeacherService } from './home/teachers/teacher.service';
 import { FormsModule } from '@angular/forms';
 import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
 import { CanDeactivateComponent } from './home/teachers/add-teacher.can-deactivate';
+import { StudentsComponent } from './home/students/students.component';
+import { StudentComponent } from './home/students/student/student.component';
+import { AddStudentComponent } from './home/students/add-student/add-student.component';
+import { StudentService } from './home/students/student.service';
 
 @NgModule({
   declarations: [
@@ -25,14 +29,17 @@ import { CanDeactivateComponent } from './home/teachers/add-teacher.can-deactiva
     TeachersComponent,
     TeacherComponent,
     AddCourseComponent,
-    AddTeacherComponent
+    AddTeacherComponent,
+    StudentsComponent,
+    StudentComponent,
+    AddStudentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [TeacherService, CanDeactivateComponent],
+  providers: [TeacherService, CanDeactivateComponent, StudentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

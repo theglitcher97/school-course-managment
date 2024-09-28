@@ -1,7 +1,10 @@
 .course-card {
     height: 360px;
-    max-height: 380px;
     overflow: hidden;
     margin-bottom: 15px;
     cursor: pointer;
+}
+
+.course-card img {
+    border-radius: 5px;
 }

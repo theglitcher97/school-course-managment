@@ -7,6 +7,9 @@ import { TeacherComponent } from './home/teachers/teacher/teacher.component';
 import { AddCourseComponent } from './home/courses/add-course/add-course.component';
 import { AddTeacherComponent } from './home/teachers/add-teacher/add-teacher.component';
 import { CanDeactivateComponent } from './home/teachers/add-teacher.can-deactivate';
+import { StudentsComponent } from './home/students/students.component';
+import { AddStudentComponent } from './home/students/add-student/add-student.component';
+import { StudentComponent } from './home/students/student/student.component';
 
 const appRoutes: Route[] = [
   {
@@ -45,6 +48,26 @@ const appRoutes: Route[] = [
       {
         path: ':id/edit',
         component: AddTeacherComponent,
+        canDeactivate: [CanDeactivateComponent],
+      },
+    ],
+  },
+  {
+    path: 'students',
+    component: StudentsComponent,
+    children: [
+      {
+        path: 'add-student',
+        component: AddStudentComponent,
+        canDeactivate: [CanDeactivateComponent],
+      },
+      {
+        path: ':id',
+        component: StudentComponent,
+      },
+      {
+        path: ':id/edit',
+        component: AddStudentComponent,
         canDeactivate: [CanDeactivateComponent],
       },
     ],
