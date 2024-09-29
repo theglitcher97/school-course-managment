@@ -1,18 +1,19 @@
-import { EventEmitter, Injectable, Injector } from "@angular/core";
+import { EventEmitter, Injectable, Injector, OnInit } from "@angular/core";
 import { TeacherModel } from "./teacher.model";
 import { CourseService } from "../courses/course.service";
 
 @Injectable()
-export class TeacherService {
+export class TeacherService implements OnInit {
     
     public teacherUpdatedEvent: EventEmitter<TeacherModel> = new EventEmitter<TeacherModel>();
     public teachersUpdatedEvent: EventEmitter<TeacherModel[]> = new EventEmitter<TeacherModel[]>();
+    private teachers: TeacherModel[] = [new TeacherModel('Fernando', 'Orozco', "IMG")]
 
     constructor(private injector: Injector){}
+
+    ngOnInit(): void {
+    }
    
-    private teachers: TeacherModel[] = []
-
-
     public getTeachers() {
         return this.teachers.slice();
     }

@@ -63,6 +63,6 @@ export class AddTeacherComponent
     if (this.canLeave) return true;
     if (this.firstName || this.lastName || this.img)
       return window.confirm("Your progress will be lost")
-    return false;
-  }
+    return true;
+}
 }

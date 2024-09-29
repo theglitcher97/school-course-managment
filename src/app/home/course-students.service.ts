@@ -1,11 +1,13 @@
-import { Injectable } from "@angular/core";
+import { EventEmitter, Injectable } from "@angular/core";
 import { StudentModel } from "./students/student.model";
 import { StudentService } from "./students/student.service";
 
 @Injectable()
 export class CourseStudentsService {
+    
     // courseId -> [studentId, studentId]
     public courseStudents: Map<number, Set<number>> = new Map<number, Set<number>>();
+    public courseStudentsUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
 
     constructor(private studentService: StudentService){}
 
@@ -13,6 +15,7 @@ export class CourseStudentsService {
         if (!this.courseStudents.has(courseId))
             this.courseStudents.set(courseId, new Set<number>())
         this.courseStudents.get(courseId)?.add(studentId);
+        this.courseStudentsUpdated.next(true);
     }
 
     public getStudentForCourse(courseId: number): StudentModel[] {
@@ -27,5 +30,12 @@ export class CourseStudentsService {
         })
         
         return students;
+    }
+
+    removeStudentFromCourse(id: number, studentId: number) {
+        if (!this.courseStudents.has(id))
+            return;
+        this.courseStudents.get(id)?.delete(studentId);
+        this.courseStudentsUpdated.next(true);
     }
 }

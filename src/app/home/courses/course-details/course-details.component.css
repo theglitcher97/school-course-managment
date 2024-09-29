@@ -1,0 +1,36 @@
+.course-students-details {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.course-student-details {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: baseline;
+}
+
+.course-student-details button {
+    display: block;
+}
+
+.course-details-card {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.course-details-card img {
+    width: 100%;
+}
+
+.course-student-amount-details {
+    display: flex;
+    justify-content: space-around;
+}
+
+.course-student-amount-details span {
+    display: block;
+}
