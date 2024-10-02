@@ -15,7 +15,7 @@
           {{ student.firstName }} {{ student.lastName }}
         </option>
       </select>
-      <button class="btn btn-default" (click)="onAssignStudentToCourse()">
+      <button class="btn btn-default" style="display: block; float: right;" (click)="onAssignStudentToCourse()">
         assign
       </button>
     </ng-container>
@@ -29,7 +29,7 @@
     class="course-students-details"
   >
   <div class="course-student-details">
-      <p>{{ student.firstName }} {{ student.firstName }}</p>
+      <p>{{ student.firstName }} {{ student.lastName }}</p>
       <button class="btn btn-warning" (click)="removeFromCourse(student.id)">remove</button>
   </div>
   </div>
