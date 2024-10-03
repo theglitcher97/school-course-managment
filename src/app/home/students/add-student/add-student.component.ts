@@ -23,8 +23,8 @@ export class AddStudentComponent implements CanDeactivateComponent, OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activeRoute.params.subscribe(params => {
-      const id = +params['id']; 
+    this.activeRoute.params.subscribe((params) => {
+      const id = +params['id'];
       if (id !== undefined) {
         this.student = this.StudentService.getStudentById(id);
         if (this.student !== undefined) {
@@ -33,12 +33,22 @@ export class AddStudentComponent implements CanDeactivateComponent, OnInit {
           this.img = this.student.img;
         }
       }
-
-    })
-    
+    });
   }
 
   onSaveStudent() {
+    if (
+      !this.firstName ||
+      !this.firstName.trim() ||
+      !this.lastName ||
+      !this.lastName.trim() ||
+      !this.img ||
+      !this.img.trim()
+    ) {
+      window.alert('Looks like some info is missing, please check');
+      return;
+    }
+
     if (this.student == undefined) {
       this.student = new StudentModel(this.firstName, this.lastName, this.img);
       this.StudentService.save(this.student);

@@ -66,8 +66,8 @@ export class AddCourseComponent
     const courseImage = this.courseImageInput.nativeElement.value;
 
     if (
-      !courseName ||
-      !courseImage ||
+      !courseName.trim() ||
+      !courseImage.trim() ||
       maxCourseStudents === undefined ||
       maxCourseStudents <= 0
     ) {

@@ -42,8 +42,17 @@ export class AddTeacherComponent
   }
 
   onSaveTeacher() {
-    if (!this.firstName.trim() || !this.lastName.trim() || !this.img)
+    if (
+      !this.firstName ||
+      !this.firstName.trim() ||
+      !this.lastName ||
+      !this.lastName.trim() ||
+      !this.img ||
+      !this.img.trim()
+    ) {
+      window.alert('Looks like some info is missing, please check');
       return;
+    }
 
     if (this.teacher !== undefined) {
       this.teacher.firstName = this.firstName;
@@ -62,7 +71,7 @@ export class AddTeacherComponent
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
     if (this.canLeave) return true;
     if (this.firstName || this.lastName || this.img)
-      return window.confirm("Your progress will be lost")
+      return window.confirm('Your progress will be lost');
     return true;
-}
+  }
 }
