@@ -18,10 +18,12 @@ import { Observable } from 'rxjs';
   templateUrl: './add-course.component.html',
   styleUrls: ['./add-course.component.css'],
 })
-export class AddCourseComponent implements OnInit, AfterViewInit, CanComponentDeactivate {
+export class AddCourseComponent
+  implements OnInit, AfterViewInit, CanComponentDeactivate
+{
   @ViewChild('courseName') courseNameInput!: ElementRef;
   @ViewChild('teacherId') teacherIdInput!: ElementRef;
-  @ViewChild('totalStudents') totalStudentsInput!: ElementRef;
+  @ViewChild('maxStudents') maxStudents!: ElementRef;
   @ViewChild('courseImage') courseImageInput!: ElementRef;
 
   private course!: CourseModel;
@@ -33,7 +35,7 @@ export class AddCourseComponent implements OnInit, AfterViewInit, CanComponentDe
     private courseService: CourseService,
     private teacherService: TeacherService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class AddCourseComponent implements OnInit, AfterViewInit, CanComponentDe
 
   ngAfterViewInit(): void {
     this.activatedRoute.params.subscribe((params: Params) => {
-      let id = this.activatedRoute.snapshot.params['id'];
+      let id = params['id'];
       if (id !== undefined) {
         let course = this.courseService.getCourseById(+id);
         if (course === undefined) return;
@@ -50,7 +52,7 @@ export class AddCourseComponent implements OnInit, AfterViewInit, CanComponentDe
         this.course = course;
         this.courseNameInput.nativeElement.value = this.course.name;
         this.teacherIdInput.nativeElement.value = this.course.teacherId;
-        this.totalStudentsInput.nativeElement.value = this.course.totalStudents;
+        this.maxStudents.nativeElement.value = this.course.totalStudents;
         this.courseImageInput.nativeElement.value = this.course.img;
         this.isEditing = true;
       }
@@ -58,47 +60,53 @@ export class AddCourseComponent implements OnInit, AfterViewInit, CanComponentDe
   }
 
   onSaveCourse() {
-    console.log(this.teacherIdInput);
-    
     const courseName = this.courseNameInput.nativeElement.value;
     const teacherId = +this.teacherIdInput.nativeElement.value;
-    const totalStudents = this.totalStudentsInput.nativeElement.value;
+    const maxCourseStudents = this.maxStudents.nativeElement.value;
     const courseImage = this.courseImageInput.nativeElement.value;
+
+    if (
+      !courseName ||
+      !courseImage ||
+      maxCourseStudents === undefined ||
+      maxCourseStudents <= 0
+    ) {
+      window.alert('Looks like some info is missing, please check');
+      return;
+    }
 
     if (!this.isEditing) {
       this.course = new CourseModel(
         teacherId,
         courseName,
-        totalStudents,
+        maxCourseStudents,
         courseImage
       );
-    }else{
+    } else {
       this.course.name = courseName;
       this.course.teacherId = teacherId;
-      this.course.totalStudents = totalStudents;
+      this.course.totalStudents = maxCourseStudents;
       this.course.img = courseImage;
     }
 
     if (this.isEditing) this.courseService.updateCourse(this.course);
     else this.courseService.addCourse(this.course);
     this.canLeave = true;
-    this.router.navigate([".."], {relativeTo: this.activatedRoute})
-
+    this.router.navigate(['..'], { relativeTo: this.activatedRoute });
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-
     if (this.canLeave) return true;
 
     if (this.courseNameInput == undefined) return true;
 
     const courseName = this.courseNameInput.nativeElement.value;
     const teacherId = +this.teacherIdInput.nativeElement.value;
-    const totalStudents = this.totalStudentsInput.nativeElement.value;
+    const totalStudents = this.maxStudents.nativeElement.value;
     const courseImage = this.courseImageInput.nativeElement.value;
 
     if (courseName || teacherId || totalStudents || courseImage)
-      return window.confirm("Your progress will be lost")
+      return window.confirm('Your progress will be lost');
     return true;
   }
 }

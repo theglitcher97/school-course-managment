@@ -7,7 +7,7 @@ export class TeacherService implements OnInit {
     
     public teacherUpdatedEvent: EventEmitter<TeacherModel> = new EventEmitter<TeacherModel>();
     public teachersUpdatedEvent: EventEmitter<TeacherModel[]> = new EventEmitter<TeacherModel[]>();
-    private teachers: TeacherModel[] = [new TeacherModel('Fernando', 'Orozco', "IMG")]
+    private teachers: TeacherModel[] = []
 
     constructor(private injector: Injector){}
 
