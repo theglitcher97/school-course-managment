@@ -26,6 +26,7 @@ export class AddCourseComponent
   @ViewChild('maxStudents') maxStudents!: ElementRef;
   @ViewChild('courseImage') courseImageInput!: ElementRef;
 
+  private prevTeacherId = -1;
   private course!: CourseModel;
   private isEditing = false;
   public teachers: TeacherModel[] = [];
@@ -82,6 +83,7 @@ export class AddCourseComponent
         maxCourseStudents,
         courseImage
       );
+      this.prevTeacherId = teacherId;
     } else {
       this.course.name = courseName;
       this.course.teacherId = teacherId;
@@ -89,7 +91,8 @@ export class AddCourseComponent
       this.course.img = courseImage;
     }
 
-    if (this.isEditing) this.courseService.updateCourse(this.course);
+    const prevTeacherId = this.prevTeacherId !== -1 ? this.prevTeacherId : this.course.teacherId;
+    if (this.isEditing) this.courseService.updateCourse(this.course, prevTeacherId);
     else this.courseService.addCourse(this.course);
     this.canLeave = true;
     this.router.navigate(['..'], { relativeTo: this.activatedRoute });

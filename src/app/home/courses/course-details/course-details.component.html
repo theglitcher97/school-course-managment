@@ -1,13 +1,13 @@
 <div class="row" *ngIf="course !== undefined">
   <div class="col-xs-12">
     <div class="course-details-card">
-      <img [src]="course.img" alt="" height="300px"/>
-      <h2 style="margin-bottom: 2px;">{{ course.name }}</h2>
-      <h3 style="margin-top: 2px;">{{ course.teacher.name }}</h3>
+      <img [src]="course.img" alt="" height="300px" />
+      <h2 style="margin-bottom: 2px">{{ course.name }}</h2>
+      <h3 class="course-teacher-name"  [routerLink]="['/teachers', course.teacherId]">{{ course.teacher.name }}</h3>
     </div>
     <div class="course-student-amount-details">
-        <span>actual students: {{ courseStudents.length }}</span>
-        <span>max student: {{ course.totalStudents }}</span>
+      <span>actual students: {{ courseStudents.length }}</span>
+      <span>max student: {{ course.totalStudents }}</span>
     </div>
     <ng-container *ngIf="students.length">
       <select name="students" id="studentId" #studentId>
@@ -15,22 +15,33 @@
           {{ student.firstName }} {{ student.lastName }}
         </option>
       </select>
-      <button class="btn btn-default" style="display: block; float: right;" (click)="onAssignStudentToCourse()">
+      <button
+        class="btn btn-default"
+        style="display: block; float: right"
+        (click)="onAssignStudentToCourse()"
+      >
         assign
       </button>
     </ng-container>
   </div>
 </div>
-<hr>
+<hr />
 <div class="row" *ngIf="courseStudents.length">
   <div
     class="col-xs-12"
     *ngFor="let student of courseStudents"
     class="course-students-details"
   >
-  <div class="course-student-details">
+    <div class="course-student-details">
       <p>{{ student.firstName }} {{ student.lastName }}</p>
-      <button class="btn btn-warning" (click)="removeFromCourse(student.id)">remove</button>
-  </div>
+      <div>
+        <button style="display: inline-block;" class="btn btn-warning" (click)="removeFromCourse(student.id)">
+          remove
+        </button>
+        <button style="display: inline-block; margin-left: 10px;" class="btn btn-primary" [routerLink]="['/students', student.id]" >
+          see
+        </button>
+      </div>
+    </div>
   </div>
 </div>

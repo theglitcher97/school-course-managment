@@ -53,7 +53,7 @@ export class AddStudentComponent implements CanDeactivateComponent, OnInit {
     }
 
     if (this.student == undefined) {
-      this.student = new StudentModel(this.firstName, this.career, this.lastName, this.img);
+      this.student = new StudentModel(this.firstName, this.lastName, this.career,  this.img);
       this.StudentService.save(this.student);
       this.student = undefined;
     } else {

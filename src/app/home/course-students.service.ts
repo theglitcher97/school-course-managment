@@ -5,7 +5,7 @@ import { StudentService } from "./students/student.service";
 @Injectable()
 export class CourseStudentsService {
     
-    // courseId -> [studentId, studentId]
+    // courseId -> [courseId, studentId]
     public courseStudents: Map<number, Set<number>> = new Map<number, Set<number>>();
     public courseStudentsUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -16,7 +16,7 @@ export class CourseStudentsService {
             this.courseStudents.set(courseId, new Set<number>())
         this.courseStudents.get(courseId)?.add(studentId);
         this.courseStudentsUpdated.next(true);
-    }
+    }   
 
     public getStudentForCourse(courseId: number): StudentModel[] {
         const students: StudentModel[] = [];

@@ -1,47 +1,51 @@
-import { EventEmitter, Injectable, Injector, OnInit } from "@angular/core";
-import { TeacherModel } from "./teacher.model";
-import { CourseService } from "../courses/course.service";
+import { EventEmitter, Injectable, Injector, OnInit } from '@angular/core';
+import { TeacherModel } from './teacher.model';
+import { CourseService } from '../courses/course.service';
+import { TeacherCoursesService } from '../teacher-courses.service';
 
 @Injectable()
 export class TeacherService implements OnInit {
-    
-    public teacherUpdatedEvent: EventEmitter<TeacherModel> = new EventEmitter<TeacherModel>();
-    public teachersUpdatedEvent: EventEmitter<TeacherModel[]> = new EventEmitter<TeacherModel[]>();
-    private teachers: TeacherModel[] = []
+  public teacherUpdatedEvent: EventEmitter<TeacherModel> =
+    new EventEmitter<TeacherModel>();
+  public teachersUpdatedEvent: EventEmitter<TeacherModel[]> = new EventEmitter<
+    TeacherModel[]
+  >();
+  private teachers: TeacherModel[] = [];
 
-    constructor(private injector: Injector){}
+  constructor(
+    private injector: Injector
+  ) {}
 
-    ngOnInit(): void {
-    }
-   
-    public getTeachers() {
-        return this.teachers.slice();
-    }
+  ngOnInit(): void {}
 
-    getTeacherById(teacherId: number) {
-        return this.teachers.slice().find((t: TeacherModel) => t.id === teacherId);
-    }
+  public getTeachers() {
+    return this.teachers.slice();
+  }
 
-    save(teacher: TeacherModel) {
-      this.teachers.unshift(teacher);
-      this.teachersUpdatedEvent.next(this.teachers.slice())
-    }
+  getTeacherById(teacherId: number) {
+    return this.teachers.slice().find((t: TeacherModel) => t.id === teacherId);
+  }
 
-    update(id: number, teacher: TeacherModel) {
-      const oldTeacherIndex = this.teachers.findIndex(t => t.id === id);
-      if (oldTeacherIndex === -1) return;
-      this.teachers.splice(oldTeacherIndex, 1, teacher);
-      this.teacherUpdatedEvent.next(teacher);
-    }
+  save(teacher: TeacherModel) {
+    this.teachers.unshift(teacher);
+    this.teachersUpdatedEvent.next(this.teachers.slice());
+  }
 
-    deleteTeacher(id: number):boolean {
-      const courseService = this.injector.get(CourseService);
-      const hasCourseAssigned = courseService.hasAnyCourseAssigned(id)
-      if (hasCourseAssigned) return false;
-      const oldTeacherIndex = this.teachers.findIndex(t => t.id === id);
-      this.teachers.splice(oldTeacherIndex, 1);
-      this.teachersUpdatedEvent.next(this.teachers.slice())
-      return true;
-    }
-    
+  update(id: number, teacher: TeacherModel) {
+    const oldTeacherIndex = this.teachers.findIndex((t) => t.id === id);
+    if (oldTeacherIndex === -1) return;
+    this.teachers.splice(oldTeacherIndex, 1, teacher);
+    this.teacherUpdatedEvent.next(teacher);
+  }
+
+  deleteTeacher(id: number): boolean {
+    const courseService = this.injector.get(CourseService);
+    const hasCourseAssigned = courseService.hasAnyCourseAssigned(id);
+    if (hasCourseAssigned) return false;
+    const oldTeacherIndex = this.teachers.findIndex((t) => t.id === id);
+    this.teachers.splice(oldTeacherIndex, 1);
+    this.teachersUpdatedEvent.next(this.teachers.slice());
+    return true;
+  }
+
 }
