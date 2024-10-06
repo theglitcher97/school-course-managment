@@ -23,6 +23,8 @@ import { CourseStudentsResolver } from './home/courses/course-students.resolver'
 import { CourseStudentsService } from './home/course-students.service';
 import { TeacherDetailsComponent } from './home/teachers/teacher-details/teacher-details.component';
 import { TeacherCoursesService } from './home/teacher-courses.service';
+import { StudentDetailsComponent } from './home/students/student-details/student-details.component';
+import { StudentCoursesService } from './home/student-courses.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { TeacherCoursesService } from './home/teacher-courses.service';
     AddStudentComponent,
     CourseDetailsComponent,
     TeacherDetailsComponent,
+    StudentDetailsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [
@@ -48,7 +51,8 @@ import { TeacherCoursesService } from './home/teacher-courses.service';
     StudentService,
     CourseStudentsService,
     CourseStudentsResolver,
-    TeacherCoursesService
+    TeacherCoursesService,
+    StudentCoursesService
   ],
   bootstrap: [AppComponent],
 })

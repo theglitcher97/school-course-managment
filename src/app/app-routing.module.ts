@@ -13,6 +13,7 @@ import { StudentComponent } from './home/students/student/student.component';
 import { CourseStudentsResolver } from './home/courses/course-students.resolver';
 import { CourseDetailsComponent } from './home/courses/course-details/course-details.component';
 import { TeacherDetailsComponent } from './home/teachers/teacher-details/teacher-details.component';
+import { StudentDetailsComponent } from './home/students/student-details/student-details.component';
 
 const appRoutes: Route[] = [
   {
@@ -67,7 +68,7 @@ const appRoutes: Route[] = [
       },
       {
         path: ':id',
-        component: StudentComponent,
+        component: StudentDetailsComponent,
       },
       {
         path: ':id/edit',

@@ -1,20 +1,11 @@
-.teacher-details-card {
-    padding-top: 10px;
-    text-align: center;
-}
-
-.teacher-details-card img {
-    width: 100%;
-}
-
-.teacher-courses-details {
+.student-courses-details {
     display: flex;
     justify-content: space-between;
     padding-left: 10px;
     padding-right: 10px;
 }
 
-.teacher-course-details {
+.student-course-details {
     height: 50px;
     display: flex;
     justify-content: space-between;
@@ -22,6 +13,15 @@
     align-items: baseline;
 }
 
-.teacher-course-details button {
+.student-course-details button {
     display: block;
-}   
+}
+
+.student-details-card {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.student-details-card img {
+    width: 100%;
+}
