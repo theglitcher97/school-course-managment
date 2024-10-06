@@ -6,6 +6,7 @@ export class StudentModel {
     constructor(
       public firstName: string,
       public lastName: string,
+      public career: string,
       public img: string
     ) {
       this.id = StudentModel.COURSE_COUNTER++;

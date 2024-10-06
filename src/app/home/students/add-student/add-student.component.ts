@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AddStudentComponent implements CanDeactivateComponent, OnInit {
   public firstName!: string;
   public lastName!: string;
+  public career!: string;
   public img!: string;
   private student!: StudentModel | undefined;
 
@@ -43,22 +44,26 @@ export class AddStudentComponent implements CanDeactivateComponent, OnInit {
       !this.lastName ||
       !this.lastName.trim() ||
       !this.img ||
-      !this.img.trim()
+      !this.img.trim() ||
+      !this.career ||
+      !this.career.trim()
     ) {
       window.alert('Looks like some info is missing, please check');
       return;
     }
 
     if (this.student == undefined) {
-      this.student = new StudentModel(this.firstName, this.lastName, this.img);
+      this.student = new StudentModel(this.firstName, this.career, this.lastName, this.img);
       this.StudentService.save(this.student);
       this.student = undefined;
     } else {
       this.student.firstName = this.firstName;
       this.student.lastName = this.lastName;
+      this.student.career = this.career;
       this.student.img = this.img;
       this.StudentService.update(this.student.id, this.student);
     }
+    this.router.navigate([".."], {relativeTo: this.activeRoute})
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
