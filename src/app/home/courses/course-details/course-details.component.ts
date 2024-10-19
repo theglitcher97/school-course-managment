@@ -1,21 +1,24 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { StudentModel } from '../../students/student.model';
 import { ActivatedRoute, Data, Params } from '@angular/router';
 import { StudentService } from '../../students/student.service';
 import { CourseStudentsService } from '../../course-students.service';
 import { CourseModel } from '../course.model';
 import { CourseService } from '../course.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-course-details',
   templateUrl: './course-details.component.html',
   styleUrls: ['./course-details.component.css'],
 })
-export class CourseDetailsComponent implements OnInit {
+export class CourseDetailsComponent implements OnInit, OnDestroy {
   course!: CourseModel | undefined;
   courseStudents: StudentModel[] = [];
   students: StudentModel[] = [];
   @ViewChild('studentId') studentSelected!: ElementRef;
+
+  courseStudentsObs!: Subscription;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -42,7 +45,7 @@ export class CourseDetailsComponent implements OnInit {
       );
     });
 
-    this.courseStudentsService.courseStudentsUpdated.subscribe(() => {
+    this.courseStudentsObs = this.courseStudentsService.courseStudentsUpdated.subscribe(() => {
       if (this.course !== undefined)
         this.getCourseAndStudents();
     });
@@ -70,5 +73,9 @@ export class CourseDetailsComponent implements OnInit {
     if (this.course == undefined) return;
     this.courseStudentsService.addStudentToCourse(this.course.id, id);
     this.students = this.students.filter((s) => s.id !== id);
+  }
+
+  ngOnDestroy(): void {
+      this.courseStudentsObs.unsubscribe()
   }
 }
