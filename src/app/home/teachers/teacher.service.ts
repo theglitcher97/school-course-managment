@@ -1,20 +1,18 @@
-import { EventEmitter, Injectable, Injector, OnInit } from '@angular/core';
+import { Injectable, Injector, OnInit } from '@angular/core';
 import { TeacherModel } from './teacher.model';
 import { CourseService } from '../courses/course.service';
-import { TeacherCoursesService } from '../teacher-courses.service';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class TeacherService implements OnInit {
-  public teacherUpdatedEvent: EventEmitter<TeacherModel> =
-    new EventEmitter<TeacherModel>();
-  public teachersUpdatedEvent: EventEmitter<TeacherModel[]> = new EventEmitter<
+  public teacherUpdatedEvent: Subject<TeacherModel> =
+    new Subject<TeacherModel>();
+  public teachersUpdatedEvent: Subject<TeacherModel[]> = new Subject<
     TeacherModel[]
   >();
   private teachers: TeacherModel[] = [];
 
-  constructor(
-    private injector: Injector
-  ) {}
+  constructor(private injector: Injector) {}
 
   ngOnInit(): void {}
 
@@ -47,5 +45,4 @@ export class TeacherService implements OnInit {
     this.teachersUpdatedEvent.next(this.teachers.slice());
     return true;
   }
-
 }

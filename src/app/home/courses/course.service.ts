@@ -1,13 +1,13 @@
-import { EventEmitter, Injectable, Injector, OnInit } from '@angular/core';
+import { Injectable, Injector, OnInit } from '@angular/core';
 import { CourseModel } from './course.model';
 import { TeacherService } from '../teachers/teacher.service';
 import { TeacherCoursesService } from '../teacher-courses.service';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CourseService implements OnInit {
   
-  public coursesUpdatedEvent: EventEmitter<boolean> =
-    new EventEmitter<boolean>();
+  public coursesUpdatedEvent: Subject<boolean> = new Subject<boolean>();
   private courses: CourseModel[] = [];
 
   constructor(private teacherService: TeacherService, private injector: Injector) {}

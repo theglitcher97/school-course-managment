@@ -1,14 +1,15 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { StudentModel } from "./students/student.model";
 import { StudentService } from "./students/student.service";
 import { StudentCoursesService } from "./student-courses.service";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class CourseStudentsService {
     
     // courseId -> [courseId, studentId]
     public courseStudents: Map<number, Set<number>> = new Map<number, Set<number>>();
-    public courseStudentsUpdated: EventEmitter<boolean> = new EventEmitter<boolean>();
+    public courseStudentsUpdated: Subject<boolean> = new Subject<boolean>();
 
     constructor(private studentService: StudentService, private studentCoursesService: StudentCoursesService){}
 

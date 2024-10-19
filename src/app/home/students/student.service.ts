@@ -1,11 +1,12 @@
-import { EventEmitter, Injectable } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { StudentModel } from "./student.model";
+import { Subject } from "rxjs";
 
 @Injectable()
 export class StudentService {
     
-    public studentUpdatedEvent: EventEmitter<StudentModel> = new EventEmitter<StudentModel>();
-    public studentsUpdatedEvent: EventEmitter<StudentModel[]> = new EventEmitter<StudentModel[]>();
+    public studentUpdatedEvent: Subject<StudentModel> = new Subject<StudentModel>();
+    public studentsUpdatedEvent: Subject<StudentModel[]> = new Subject<StudentModel[]>();
 
     constructor(){}
    
